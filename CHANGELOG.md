@@ -6,6 +6,30 @@ All notable changes to [bpmnlint](https://github.com/bpmn-io/bpmnlint) are docum
 
 ___Note:__ Yet to be released changes appear here._
 
+## 7.2.0
+
+* `FEAT`: add `no-bpmndi` rule ([#55](https://github.com/bpmn-io/bpmnlint/issues/55))
+
+## 7.1.0
+
+* `FEAT`: allow rules to skip sub-tree traversal ([#53](https://github.com/bpmn-io/bpmnlint/issues/53))
+* `FEAT`: allow rules to hook into node `enter` and `leave` ([#52](https://github.com/bpmn-io/bpmnlint/issues/52))
+
+## 7.0.1
+
+* `CHORE`: drop debug log statement
+
+## 7.0.0
+
+* `CHORE`: update to `bpmn-moddle@7`
+* `CHORE`: reduce library footprint
+* `CHORE`: require `NodeJS>=10`
+
+## 6.5.0
+
+* `FEAT`: add globbing support ([#46](https://github.com/bpmn-io/bpmnlint/issues/46))
+* `DOCS`: add explaination to `no-inclusive-gateway` rule
+
 ## 6.4.0
 
 * `FEAT`: add `superfluous-gateway` check ([#42](https://github.com/bpmn-io/bpmnlint/pull/42/files))
