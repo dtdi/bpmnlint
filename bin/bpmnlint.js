@@ -28,6 +28,8 @@ const Table = require('cli-table');
 
 const pluralize = require('pluralize');
 
+const { pathStringify } = require('@philippfromme/moddle-helpers');
+
 const CONFIG_NAME = '.bpmnlintrc';
 
 const DEFAULT_CONFIG_CONTENTS = `{
@@ -107,11 +109,21 @@ const categoryMap = {
  * Logs a formatted  message
  */
 function tableEntry(report) {
-  const category = report.category;
+  let {
+    category,
+    id = '',
+    message,
+    name = '',
+    path
+  } = report;
+
+  if (path) {
+    id = `${ id }#${ pathStringify(path) }`;
+  }
 
   const color = category === 'error' ? red : yellow;
 
-  return [ report.id || '', color(categoryMap[category] || category), report.message, report.name || '' ];
+  return [ id, color(categoryMap[ category ] || category), message, name ];
 }
 
 function createTable() {
@@ -144,6 +156,12 @@ function errorAndExit(...args) {
   console.error(...args);
 
   process.exit(1);
+}
+
+function showVersionAndExit() {
+  console.log(require('../package.json').version);
+
+  process.exit(0);
 }
 
 function infoAndExit(...args) {
@@ -314,6 +332,7 @@ async function run() {
   const {
     help,
     init,
+    version,
     config: configOverridePath,
     _: files
   } = mri(process.argv.slice(2), {
@@ -322,6 +341,10 @@ async function run() {
       c: 'config'
     }
   });
+
+  if (version) {
+    return showVersionAndExit();
+  }
 
   if (help) {
     return infoAndExit(HELP_STRING);

@@ -6,6 +6,40 @@ All notable changes to [bpmnlint](https://github.com/bpmn-io/bpmnlint) are docum
 
 ___Note:__ Yet to be released changes appear here._
 
+## 7.8.0
+
+* `FEAT`: be able to configure rules ([#82](https://github.com/bpmn-io/bpmnlint/pull/82))
+* `FEAT`: be able to configure rules when testing ([#83](https://github.com/bpmn-io/bpmnlint/pull/83))
+
+## 7.7.0
+
+* `FEAT`: fuzzy test for equality of nodes when using `RuleTester#verify` ([#79](https://github.com/bpmn-io/bpmnlint/pull/79/files))
+
+## 7.6.0
+
+* `FEAT`: allow passing object as third parameter to `Reporter#report` ([#75](https://github.com/bpmn-io/bpmnlint/pull/75))
+
+
+## 7.5.0
+
+* `FEAT`: add optional `path` parameter to `Reporter#report` ([#73](https://github.com/bpmn-io/bpmnlint/pull/73))
+* `FEAT`: add optional `name` parameter to `RuleTester#verify` ([#68](https://github.com/bpmn-io/bpmnlint/pull/68))
+* `CHORE`: update to `bpmn-moddle@7.1.2`
+
+## 7.4.0
+
+* `FEAT`: resolve local package by name ([#64](https://github.com/bpmn-io/bpmnlint/pull/64))
+
+## 7.3.0
+
+* `FEAT`: support `--version` command line flag ([#65](https://github.com/bpmn-io/bpmnlint/pull/65))
+* `FEAT`: allow rule testers to provide custom `it`
+* `FIX`: make `no-bpmndi` handle missing `LaneSet#lanes` gracefully ([#63](https://github.com/bpmn-io/bpmnlint/issues/63), [#66](https://github.com/bpmn-io/bpmnlint/pull/66))
+
+## 7.2.1
+
+* `FIX`: exclude compensation boundary and activity in `no-disconnected` check ([#60](https://github.com/bpmn-io/bpmnlint/pull/60))
+
 ## 7.2.0
 
 * `FEAT`: add `no-bpmndi` rule ([#55](https://github.com/bpmn-io/bpmnlint/issues/55))

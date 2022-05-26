@@ -16,7 +16,7 @@ describe('test-rule', function() {
   });
 
 
-  it('should return check function reported messages', () => {
+  it('should return check function reported messages (id, message)', () => {
 
     // given
     const expectedMessages = [
@@ -28,6 +28,47 @@ describe('test-rule', function() {
     const messages = testRule({
       moddleRoot,
       rule: createRule(fakeCheckRuleWithReports)
+    });
+
+    // then
+    expect(messages).to.eql(expectedMessages);
+  });
+
+
+  it('should return check function reported messages (id, message, path)', () => {
+
+    // given
+    const expectedMessages = [
+      {
+        id: 'Collaboration_0wzd2dx',
+        message: 'Collaboration detected',
+        path: [ 'rootElements', 0 ]
+      }
+    ];
+    const messages = testRule({
+      moddleRoot,
+      rule: createRule(fakeCheckRuleWithPath)
+    });
+
+    // then
+    expect(messages).to.eql(expectedMessages);
+  });
+
+
+  it('should return check function reported messages (id, message, { path })', () => {
+
+    // given
+    const expectedMessages = [
+      {
+        id: 'Collaboration_0wzd2dx',
+        message: 'Collaboration detected',
+        path: [ 'rootElements', 0 ],
+        foo: 'foo'
+      }
+    ];
+    const messages = testRule({
+      moddleRoot,
+      rule: createRule(fakeCheckRuleWithObject)
     });
 
     // then
@@ -79,6 +120,29 @@ function fakeCheckRuleWithReports() {
   function check(node, reporter) {
     if (is(node, 'Definitions')) {
       reporter.report(node.id, 'Definitions detected');
+    }
+  }
+
+  return { check };
+}
+
+function fakeCheckRuleWithPath() {
+  function check(node, reporter) {
+    if (is(node, 'Collaboration')) {
+      reporter.report(node.id, 'Collaboration detected', [ 'rootElements', 0 ]);
+    }
+  }
+
+  return { check };
+}
+
+function fakeCheckRuleWithObject() {
+  function check(node, reporter) {
+    if (is(node, 'Collaboration')) {
+      reporter.report(node.id, 'Collaboration detected', {
+        path: [ 'rootElements', 0 ],
+        foo: 'foo'
+      });
     }
   }
 

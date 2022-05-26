@@ -138,6 +138,16 @@ describe('cli', function() {
       }
     });
 
+
+    test({
+      cmd: [ 'bpmnlint', '--version' ],
+      expct: {
+        code: 0,
+        stderr: EMPTY,
+        stdout: require('../../package.json').version
+      }
+    });
+
   });
 
 
@@ -225,6 +235,7 @@ describe('cli', function() {
     });
   });
 
+
   describe('should handle glob star patterns', function() {
     test({
       cmd: [ 'bpmnlint', '*.bpmn'],
@@ -288,6 +299,7 @@ describe('cli', function() {
       }
     });
   });
+
 });
 
 // helper /////////////////////////////
